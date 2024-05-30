@@ -17,6 +17,8 @@ This repository aims to learn and understand the YOLO algorithm. I am a beginner
 - [x] pretrained network
 - [x] reorg layer
 - [x] multi-scale training
+- [x] self-training with yolov2-tiny
+- [x] Federated learning with yolov2-tiny
 - [ ] reproduce original paper's mAP
 
 ## Main Results
@@ -40,7 +42,7 @@ Running time: ~19ms (52FPS) on GTX 1080
 
 First clone the code
 
-    git clone https://github.com/tztztztztz/yolov2.pytorch.git
+    git clone https://github.com/Zafar343/yolov2-pytorch.git
     
 Install dependencies
 
@@ -50,6 +52,7 @@ Then create some folder
 
     mkdir output 
     mkdir data
+    mkdir results
 
 Download the pretrained weights
 
@@ -107,7 +110,34 @@ the data root path
     # cd VOCdevkit2012
     # ln -s $VOCdevit/VOC2012 VOC2012
     ```
-    
+### For Training on PASCAL VOC
+
+	python train_yolov2_tiny.py
+
+## Training on custom data
+
+### Note: It is not necessary to put custom data in the data folder, you can put it any where:
+	
+1.	make train.txt (list of training image paths)
+  
+2.	make val.txt (list of validation image paths)
+
+3.	update train.txt path, val.txt path and val_dir in data.yaml OR make a similar data.yaml file as in the repository
+	
+### For training on custom data Use: 
+ 
+ 	python train_yolov2_tiny.py --dataset custom --data data.yaml
+ 
+### Pseudo Label generation with Test_with_train.py
+ 	python Test_with_train.py --pseudos True --self-training True
+  
+### Federated Learning
+  	python fedML.py --dataset custom --data data.yaml --max_rounds x –epochsPerRound y
+       
+### Inference & Visualization
+
+	python demo.py
+ 
 ### Download pretrained network
 
     cd yolov2.pytorch
@@ -115,31 +145,6 @@ the data root path
     mkdir pretrained
     cd pretrained
     wget https://pjreddie.com/media/files/darknet19_448.weights
-    
-
-
-### Train the model - YOLOv2 - Tiny 
-
-    python train_yolov2_tiny.py
-
-### Train the model - YOLOv2
-
-    python train.py --cuda true
-     
- If you want use multiple GPUs to accelerate the training. you can use the command below.
- 
-    python train.py --cuda true --mGPUs true
-
-**NOTE**: Multi-scale training uses more GPU memory. If you have only one GPU with 8G memory, it's better to set `multi-scale=False` in `config/config.py`. See [link](https://github.com/tztztztztz/yolov2.pytorch/blob/master/config/config.py#L31).
-    
-    
-## Testing 
- 
-    python test.py --cuda true
-
- 
- 
-
 
 
 

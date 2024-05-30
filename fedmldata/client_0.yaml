@@ -1,0 +1,9 @@
+names:
+- Vehicle
+- Rider
+- Pedestrian
+nc: 3
+path: /home/gpuadmin/ZPD/Bdd_uncleaned/3class_bdd
+train: /home/gpuadmin/ZPD/yolov2-pytorch/fedmldata/client_0.txt
+val: /home/gpuadmin/ZPD/Bdd_uncleaned/3class_bdd/val5k.txt
+val_dir: /home/gpuadmin/ZPD/Bdd_uncleaned/3class_bdd/val5k

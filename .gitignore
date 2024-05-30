@@ -1,4 +1,15 @@
-data/
+.vscode/
+data*
+wandb/
+*.onnx
+config/config.py
+Object_Detection_Metrics
+results/
+output_800/
+results1/
+train_yolov2_tiny2.py
+val.py
+cache/
 .idea/
 .DS_Store
 runs/
@@ -7,15 +18,18 @@ tmp
 sync.sh
 output/
 reports/
-*.weights
 dog.jpg
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
+*.jpg
+*.txt
+VOCdevkit2007/
+VOCdevkit2012/
 # C extensions
 *.so
+data/pretrained/
 
 # Distribution / packaging
 .Python
@@ -25,7 +39,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/

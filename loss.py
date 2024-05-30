@@ -13,6 +13,7 @@ from config import config as cfg
 from util.bbox import generate_all_anchors, xywh2xxyy, box_transform_inv, box_ious, xxyy2xywh, box_transform
 import torch.nn.functional as F
 
+torch.manual_seed(0)
 
 def build_target(output, gt_data, H, W):
     """
@@ -119,7 +120,7 @@ def build_target(output, gt_data, H, W):
 
         # step 2: process box target and class target
         # calculate overlaps between anchors and gt boxes
-        overlaps = box_ious(all_anchors_xxyy, gt_boxes).view(-1, num_anchors, num_obj)
+        overlaps = box_ious(all_anchors_xxyy, gt_boxes).view(-1, num_anchors, num_obj)  # [169, 5, 1]
         gt_boxes_xywh = xxyy2xywh(gt_boxes)
 
         # iterate over all objects
@@ -206,9 +207,9 @@ def yolo_loss(output, target):
     class_mask = class_mask.view(-1)
 
     # ignore the gradient of noobject's target
-    class_keep = class_mask.nonzero().squeeze(1)
+    class_keep = class_mask.nonzero().squeeze(1) ##### check
     class_score_batch_keep = class_score_batch[class_keep, :]
-    class_target_keep = class_target[class_keep]
+    class_target_keep = class_target[class_keep]        ### check
 
     # if cfg.debug:
     #     print(class_score_batch_keep)

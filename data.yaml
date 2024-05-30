@@ -1,0 +1,44 @@
+# YOLOv5 🚀 by Ultralytics, GPL-3.0 license
+# COCO 2017 dataset http://cocodataset.org by Microsoft
+# Example usage: python train.py --data coco.yaml
+# parent
+# ├── yolov5
+# └── datasets
+#     └── coco  ← downloads here
+
+path: /home/gpuadmin/ZPD/Bdd_uncleaned/3class_bdd/
+
+# train: /home/zafar/old_pc/data_sets/waymo_dataset/3class_waymo/yolo_test_waymo.txt
+# val: /home/zafar/old_pc/data_sets/waymo_dataset/3class_waymo/yolo_test_waymo.txt
+# train: /home/zafar/old_pc/data_sets/waymo_dataset/3class_waymo/cleaned_waymo/train.txt
+train: /home/gpuadmin/ZPD/Bdd_uncleaned/3class_bdd/train20k.txt
+# val: /home/zafar/old_pc/data_sets/waymo_dataset/3class_waymo/cleaned_waymo/val.txt
+# val: /home/zafar/old_pc/data_sets/BDD_dataset/Bdd_uncleaned/3class_bdd/val1k.txt
+# val: /home/zafar/old_pc/data_sets/BDD_dataset/Bdd_uncleaned/3class_bdd/val_test/val_test.txt
+val: /home/gpuadmin/ZPD/Bdd_uncleaned/3class_bdd/val5k.txt
+# val: /home/zafar/old_pc/data_sets/BDD_dataset/Bdd_uncleaned/3class_bdd/val.txt
+test: /home/gpuadmin/ZPD/Bdd_uncleaned/3class_bdd/val5k.txt
+
+val_dir: /home/gpuadmin/ZPD/Bdd_uncleaned/3class_bdd/val5k
+
+# Classes
+nc: 3  # number of classes
+# names: ["car","bus","truck","motorcycle","bicycle","trailer","train","rider","pedestrian","traffic light","traffic sign","other vehicle","other person"]  # class names
+names: ["Vehicle", "Rider", "Pedestrian"]
+
+# # Download script/URL (optional)
+# download: |
+#   from utils.general import download, Path
+
+#   # Download labels
+#   segments = False  # segment or box labels
+#   dir = Path(yaml['path'])  # dataset root dir
+#   url = 'https://github.com/ultralytics/yolov5/releases/download/v1.0/'
+#   urls = [url + ('coco2017labels-segments.zip' if segments else 'coco2017labels.zip')]  # labels
+#   download(urls, dir=dir.parent)
+
+#   # Download data
+#   urls = ['http://images.cocodataset.org/zips/train2017.zip',  # 19G, 118k images
+#           'http://images.cocodataset.org/zips/val2017.zip',  # 1G, 5k images
+#           'http://images.cocodataset.org/zips/test2017.zip']  # 7G, 41k images (optional)
+#   download(urls, dir=dir / 'images', threads=3)
